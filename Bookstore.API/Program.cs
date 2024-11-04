@@ -1,4 +1,4 @@
-using Bookstore.API.Data;
+using Bookstore.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

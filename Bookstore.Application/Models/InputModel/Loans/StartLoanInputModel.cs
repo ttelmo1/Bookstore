@@ -1,6 +1,6 @@
-﻿using Bookstore.API.Entities;
+﻿using Bookstore.Core.Entities;
 
-namespace Bookstore.API.Models.InputModel.Loans
+namespace Bookstore.Application.Models.InputModel.Loans
 {
     public class StartLoanInputModel
     {

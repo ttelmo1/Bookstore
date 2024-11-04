@@ -1,6 +1,6 @@
-﻿using Bookstore.API.Models.InputModel.Users;
+﻿using Bookstore.Application.Models.InputModel.Users;
 using Microsoft.AspNetCore.Mvc;
-using Bookstore.API.Data;
+using Bookstore.Infraestructure.Persistence;
 
 namespace Bookstore.API.Controllers
 {

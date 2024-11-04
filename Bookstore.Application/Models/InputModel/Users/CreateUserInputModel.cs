@@ -1,6 +1,6 @@
-﻿using Bookstore.API.Entities;
+﻿using Bookstore.Core.Entities;
 
-namespace Bookstore.API.Models.InputModel.Users
+namespace Bookstore.Application.Models.InputModel.Users
 {
     public class CreateUserInputModel
     {

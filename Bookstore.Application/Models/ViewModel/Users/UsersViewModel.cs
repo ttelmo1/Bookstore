@@ -1,6 +1,6 @@
-﻿using Bookstore.API.Entities;
+﻿using Bookstore.Core.Entities;
 
-namespace Bookstore.API.Models.ViewModel.Users
+namespace Bookstore.Application.Models.ViewModel.Users
 {
     public class UsersViewModel
     {

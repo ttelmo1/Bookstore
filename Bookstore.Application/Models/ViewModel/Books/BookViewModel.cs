@@ -1,6 +1,6 @@
-﻿using Bookstore.API.Entities;
+﻿using Bookstore.Core.Entities;
 
-namespace Bookstore.API.Models.ViewModel.Books
+namespace Bookstore.Application.Models.ViewModel.Books
 {
     public class BookViewModel
     {

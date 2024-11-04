@@ -1,4 +1,4 @@
-﻿namespace Bookstore.API.Models.InputModel.Books
+﻿namespace Bookstore.Application.Models.InputModel.Books
 {
     public class UpdateBookInputModel
     {

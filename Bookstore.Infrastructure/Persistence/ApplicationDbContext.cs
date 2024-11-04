@@ -1,7 +1,7 @@
-﻿using Bookstore.API.Entities;
+﻿using Bookstore.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bookstore.API.Data
+namespace Bookstore.Infraestructure.Persistence
 {
     public class ApplicationDbContext : DbContext
     {

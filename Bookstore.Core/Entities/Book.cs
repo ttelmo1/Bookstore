@@ -1,4 +1,4 @@
-﻿namespace Bookstore.API.Entities
+﻿namespace Bookstore.Core.Entities
 {
     public class Book : BaseEntity
     {

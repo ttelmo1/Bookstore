@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Bookstore.API.Data;
-using Bookstore.API.Models.InputModel.Loans;
+using Bookstore.Infraestructure.Persistence;
+using Bookstore.Application.Models.InputModel.Loans;
 
 namespace Bookstore.API.Controllers
 {
