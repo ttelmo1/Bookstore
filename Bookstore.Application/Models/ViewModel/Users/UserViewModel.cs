@@ -2,9 +2,9 @@
 
 namespace Bookstore.Application.Models.ViewModel.Users
 {
-    public class UsersViewModel
+    public class UserViewModel
     {
-        public UsersViewModel(User user)
+        public UserViewModel(User user)
         {
             Id = user.Id;
             Name = user.Name;
@@ -21,5 +21,7 @@ namespace Bookstore.Application.Models.ViewModel.Users
         public bool Active { get; set; }
         public List<Loan> Loans { get; set; }
 
+        public static UserViewModel FromEntity(User user)
+            => new(user);
     }
 }

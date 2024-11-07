@@ -1,7 +1,6 @@
-﻿using Bookstore.Infraestructure.Persistence;
-using Bookstore.Application.Models.InputModel.Books;
-using Bookstore.Application.Models.ViewModel.Books;
+﻿using Bookstore.Application.Models.InputModel.Books;
 using Microsoft.AspNetCore.Mvc;
+using Bookstore.Application.Services;
 
 namespace Bookstore.API.Controllers
 {
@@ -9,64 +8,54 @@ namespace Bookstore.API.Controllers
     [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBookService _bookService;
 
-        public BooksController(ApplicationDbContext context)
+        public BooksController(IBookService bookService)
         {
-            _context = context;
+            _bookService = bookService;
         }
 
         [HttpPost]
-        public IActionResult CreateBook(CreateBookInputModel model)
+        public IActionResult Create(CreateBookInputModel model)
         {
-            var book = model.ToEntity();
+            var result = _bookService.Create(model);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
 
-            _context.Books.Add(book);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetBookById), new { id = 1 }, model);
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, model);
         }
 
         [HttpGet]
-        public IActionResult GetBooks()
+        public IActionResult GetAll(string search = "")
         {
-            var books = _context.Books.Select(b => BookViewModel.FromBook(b)).ToList();
-            return Ok(books);
+            var result = _bookService.GetAll(search);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBookById(int id)
+        public IActionResult GetById(int id)
         {
-            var book = _context.Books.FirstOrDefault(b => b.Id == id);
-            if(book == null)
-                return NotFound();
-            var model = BookViewModel.FromBook(book);
-            return Ok(model); 
+            var result = _bookService.GetById(id);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBook(int id, UpdateBookInputModel model)
+        public IActionResult Update(int id, UpdateBookInputModel model)
         {
-            var book = _context.Books.SingleOrDefault(b => b.Id == id);
-            if(book == null)
-                return NotFound();
-
-            book.Update(model.Title);
-            _context.Books.Update(book);
-            _context.SaveChanges();
-               
+            var result = _bookService.Update(model);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBook(int id)
+        public IActionResult Delete(int id)
         {
-            var book = _context.Books.SingleOrDefault(b => b.Id == id);
-            if (book == null)
-                return NotFound();
-
-            _context.Books.Remove(book);
-            _context.SaveChanges();
-
+            var result = _bookService.Delete(id);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
             return NoContent();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Bookstore.Application.Models.InputModel.Users;
 using Microsoft.AspNetCore.Mvc;
 using Bookstore.Infraestructure.Persistence;
+using Bookstore.Application.Services;
 
 namespace Bookstore.API.Controllers
 {
@@ -8,39 +9,54 @@ namespace Bookstore.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-
-        public UsersController(ApplicationDbContext context)
+        private readonly IUserService _userService;
+        public UsersController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
 
         [HttpPost]
-        public IActionResult CreateUser(CreateUserInputModel model)
+        public IActionResult Create(CreateUserInputModel model)
         {
-            var user = model.ToEntity();
+            var result = _userService.Create(model);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
             
-            _context.Users.Add(user);
-            _context.SaveChanges();
-
-            return Created();
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, model);
         }
 
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetAll(string search = "")
         {
-            var users = _context.Users.ToList();
-
-            return Ok(users);
+            var result = _userService.GetAll(search);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+        public IActionResult GetById(int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
-            if(user == null)
-                return NotFound();
-            return Ok(user);
+           var result = _userService.GetById(id);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, UpdateUserInputModel model)
+        {
+            var result = _userService.Update(model);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _userService.Delete(id);
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+            return NoContent();
         }
         
     }

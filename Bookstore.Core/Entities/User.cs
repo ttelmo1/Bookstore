@@ -18,5 +18,11 @@
         public DateTime BirthDate { get; private set; }
         public bool Active { get; private set; }
         public List<Loan> Loans { get; private set; }
+
+        public void Update(string name, string email)
+        {
+            Name = name;
+            Email = email;
+        }
     }
 }
