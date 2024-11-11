@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Bookstore.Core\Bookstore.Core.csproj" />
     <ProjectReference Include="..\Bookstore.Infrastructure\Bookstore.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Books\Update\" />
+    <Folder Include="Commands\Loans\" />
+    <Folder Include="Commands\Users\" />
+    <Folder Include="Queries\Loans\" />
+    <Folder Include="Queries\Books\" />
+    <Folder Include="Queries\Users\" />
   </ItemGroup>
 
 </Project>
