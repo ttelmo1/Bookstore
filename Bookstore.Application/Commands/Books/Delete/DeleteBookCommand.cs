@@ -9,6 +9,6 @@ namespace Bookstore.Application.Commands.Books.Delete
         {
             Id = id;
         }
-        public int Id { get; set; }
+        public int Id { get; private set; }
     }
 }

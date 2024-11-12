@@ -1,14 +1,8 @@
 ﻿using Bookstore.Application.Models;
-using Bookstore.Application.Models.ViewModel.Books;
 using Bookstore.Application.Models.ViewModel.Users;
 using Bookstore.Infraestructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bookstore.Application.Commands.Users.Update
 {
