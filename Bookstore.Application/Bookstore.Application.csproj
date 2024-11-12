@@ -18,8 +18,8 @@
   <ItemGroup>
     <Folder Include="Commands\Books\Update\" />
     <Folder Include="Commands\Users\" />
+    <Folder Include="Queries\Books\GetBookById\" />
     <Folder Include="Queries\Loans\" />
-    <Folder Include="Queries\Books\" />
     <Folder Include="Queries\Users\" />
   </ItemGroup>
 
